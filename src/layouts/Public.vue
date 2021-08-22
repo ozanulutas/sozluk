@@ -1,12 +1,12 @@
 <template>
-  <div class="public">
+  <v-main>
     <h1>public layout</h1>
 
     <Nav />
-    <v-main>
+    <!-- <v-main> -->
       <router-view></router-view>
-    </v-main>
-  </div>
+    <!-- </v-main> -->
+  </v-main>
 </template>
 
 <script>
@@ -20,9 +20,3 @@ export default {
   },
 };
 </script>
-
-<style>
-  .public {
-    background: rebeccapurple;
-  }
-</style>

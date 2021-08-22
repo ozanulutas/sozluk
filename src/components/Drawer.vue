@@ -2,19 +2,22 @@
   <v-navigation-drawer 
     v-model="mutableDrawer" 
     @input="updateDrawer"
+    mobile-breakpoint="sm"
     app
   >
-    <!-- mobile-breakpoint="800" -->
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="text-h6"> Kategori </v-list-item-title>
+        <v-list-item-title class="text-h6"> Kategori Başlığı </v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
     <v-divider></v-divider>
 
     <v-list dense nav>
-      <v-list-item v-for="item in items" :key="item.title" link>
+      <v-list-item 
+        v-for="item in items" :key="item.title" 
+        :to="item.link"
+      >
         <v-list-item-content>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
@@ -33,7 +36,7 @@ export default {
   },
 
   data: () => ({
-    items: [{ title: "Konu 1" }, { title: "Konu 2" }, { title: "Konu 3" }],
+    items: [{ title: "Konu 1", link: "/posts" }, { title: "Konu 2", link: "s" }, { title: "Konu 3", link: "d" }],
   }),
 
   computed: {

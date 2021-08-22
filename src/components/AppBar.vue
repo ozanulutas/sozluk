@@ -15,23 +15,35 @@
     <v-spacer></v-spacer>
 
     <!-- Search -->
-    <v-responsive max-width="260">
+    <v-responsive max-width="260" class="mr-2">
       <v-text-field
         dense
         flat
         hide-details
         rounded
         solo-inverted
+        clearable
+        prepend-inner-icon="mdi-magnify"
       ></v-text-field>
     </v-responsive>
+    
+
+    <!-- Auth -->
+    <AuthMenu/>
 
   </v-app-bar>
 </template>
 
 
 <script>
+import AuthMenu from '@/components/AuthMenu'
+
 export default {
   name: "AppBar",
+
+  components: {
+    AuthMenu,
+  },
 
   props: {
     drawer: Boolean

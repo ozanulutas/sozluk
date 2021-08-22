@@ -5,9 +5,9 @@
 
     <Drawer @update-drawer="updateDrawer" :drawer="drawer" />
 
-    <v-main>
+    <!-- <v-main> -->
       <router-view></router-view>
-    </v-main>
+    <!-- </v-main> -->
     
   </v-app>
 </template>

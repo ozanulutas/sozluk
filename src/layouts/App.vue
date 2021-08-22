@@ -1,21 +1,19 @@
 <template>
-  <div class="app">
+  <v-main>
     <h1>app layout</h1>
     <Nav />
-    <v-main>
-      <router-view></router-view>
-    </v-main>
-  </div>
+    <router-view></router-view>
+  </v-main>
 </template>
 
 <script>
-import Nav from '@/components/Nav'
+import Nav from "@/components/Nav";
 
 export default {
   name: "AppLayout",
 
   components: {
-    Nav
+    Nav,
   },
 
   data: () => ({
@@ -23,9 +21,3 @@ export default {
   }),
 };
 </script>
-
-<style scoped>
-.app {
-  background: rosybrown;
-}
-</style>

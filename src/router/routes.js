@@ -11,6 +11,11 @@ export default [
         name: 'Home',
         component: () => import('@/views/Home.vue')
       },
+      {
+        path: '/posts',
+        name: 'Posts',
+        component: () => import('@/views/Posts.vue')
+      },
     ]
   },
   {
