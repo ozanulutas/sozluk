@@ -11,17 +11,29 @@
           <v-card-text>
             {{ post.post }}
           </v-card-text>
-          <v-card-actions>
+          <v-card-subtitle class="text-right">
             {{ post.author }}
             {{ post.date }}
-            <v-spacer></v-spacer>
-            <v-btn @click="toggleActions(post.id)" icon>
-              <v-icon>mdi-chevron-down</v-icon>
-              <!-- <v-icon>{{ show ? 'mdi-chevron-up' : 'mdi-chevron-down' }}</v-icon> -->
+          </v-card-subtitle>
+          <v-card-actions>
+            <v-btn icon>
+              <v-icon>mdi-twitter</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-facebook</v-icon>
+            </v-btn>
+            <v-btn icon class="like-btn" :class="isLiked(post.id) ? 'like-btn--active' : ''" @click="toggleLike(post.id)">
+              <v-icon class="like-btn__icon">mdi-heart</v-icon>
+            </v-btn>
+            <v-btn icon>
+              <v-icon>mdi-heart-broken</v-icon>
+            </v-btn>
+            <v-btn @click="toggleExpansion(post.id)" icon>
+              <v-icon :class="post.id === expansionId ? 'rotate-180' : ''">mdi-chevron-down</v-icon>
             </v-btn>
           </v-card-actions>
           <v-expand-transition>
-            <div v-show="show === post.id">
+            <div v-show="expansionId === post.id">
               <v-divider></v-divider>
               <v-card-text>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis animi repudiandae, omnis est veritatis illo maiores ipsam voluptatum, aperiam nulla asperiores quam possimus vero rerum laborum, corrupti ipsa veniam optio.
@@ -40,9 +52,9 @@ export default {
   name: "Posts",
 
   data: () => ({
-    show: -1,
-    toggleAction: false,
-    // show: false,
+    expansionId: null,
+    isExpanded: false,
+
     posts: [
       {
         id: 1,
@@ -68,18 +80,64 @@ export default {
         date: '11.01.2001',
         author: 'John Doe',
       },
-    ]
+    ],
+
+    user: {
+      likes: [
+        {
+          id: 1,
+          post_id: 2,
+        },
+        {
+          id: 2,
+          post_id: 3,
+        },
+      ]
+    }
+
   }),
 
+  computed: {
+    // isLiked() {
+    //   return postId => this.user.likes.some(like => like.post_id === postId)
+    // }
+  },
+
   methods: {
-    toggleActions(id) {
-      this.toggleAction = !this.toggleAction
-      // this.show = this.toggleAction ? id : -1
-      this.show = id
+    toggleExpansion(id) {
+      if(this.isExpanded && this.expansionId === id) {
+        this.expansionId = null
+        this.isExpanded = false
+      } else {
+        this.expansionId = id
+        this.isExpanded = true
+      }
+    },
+    isLiked(postId) {
+      return this.user.likes.some(like => like.post_id === postId)
+    },
+    toggleLike(postId) {
+      if(this.isLiked(postId)) {
+        this.user.likes = this.user.likes.filter(like => like.post_id !== postId)
+      } else {
+        this.user.likes.push({ id: 3, post_id: postId })
+      }
     }
   }
 };
 </script>
 
-<style>
+<style lang="scss" scoped>
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.like-btn {
+  &:hover,
+  &--active {
+    .like-btn__icon {
+      color: pink;
+    } 
+  }
+}
 </style>
