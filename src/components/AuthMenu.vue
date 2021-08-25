@@ -6,7 +6,7 @@
       </v-btn>
     </template>
     <v-list dense nav>
-      <v-list-item to="">
+      <v-list-item to="/login">
         <v-list-item-icon>
           <v-icon>mdi-login-variant</v-icon>
         </v-list-item-icon>
@@ -14,7 +14,7 @@
           <v-list-item-title>Giriş</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
-      <v-list-item to="">
+      <v-list-item to="/register">
         <v-list-item-icon>
           <v-icon>mdi-account-plus</v-icon>
         </v-list-item-icon>

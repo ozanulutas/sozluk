@@ -1,5 +1,5 @@
-import AppLayout from '@/layouts/App.vue';
-import PublicLayout from '@/layouts/Public.vue';
+import AppLayout from '@/layouts/AppLayout.vue';
+import PublicLayout from '@/layouts/PublicLayout.vue';
 
 export default [
   {
@@ -15,6 +15,16 @@ export default [
         path: '/posts',
         name: 'Posts',
         component: () => import('@/views/Posts.vue')
+      },
+      {
+        path: '/login',
+        name: 'Login',
+        component: () => import('@/views/Login.vue')
+      },
+      {
+        path: '/register',
+        name: 'Register',
+        component: () => import('@/views/Register.vue')
       },
     ]
   },
