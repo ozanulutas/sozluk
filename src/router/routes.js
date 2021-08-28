@@ -7,11 +7,6 @@ export default [
     path: '',
     children: [
       {
-        path: '/',
-        name: 'Home',
-        component: () => import('@/views/Home.vue')
-      },
-      {
         path: '/posts',
         name: 'Posts',
         component: () => import('@/views/Posts.vue')
@@ -37,6 +32,12 @@ export default [
         path: '/profile',
         name: 'Profile',
         component: () => import('@/views/Profile.vue'),
+      },
+      {
+        meta: { middleware: 'auth' },
+        path: '/topic',
+        name: 'Topic',
+        component: () => import('@/views/Topic.vue')
       },
     ]
   },

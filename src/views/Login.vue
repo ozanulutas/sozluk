@@ -1,7 +1,7 @@
 <template>
   <v-container>
 
-    <v-form ref="form">
+    <v-form ref="form" @submit.prevent="login">
       <v-text-field
         v-model="formData.user_name"
         :rules="[rules.required()]"
@@ -21,7 +21,7 @@
       >
       </v-text-field>
 
-      <v-btn color="success" @click="login">
+      <v-btn type="submit" color="success">
         GİRİŞ       
       </v-btn>
     </v-form>
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { rules, resetForm, resetValidation } from '@/helpers/form.js'
+import { rules } from '@/helpers/validation-rules.js'
 
 export default {
   name: 'Login',
@@ -46,8 +46,8 @@ export default {
     login() {
       if(this.$refs.form.validate()) {
         console.log("logged in");
-        resetForm(this.$refs.form)
-        resetValidation(this.$refs.form)
+        this.$refs.form.reset()
+        this.$refs.form.resetValidation()
       }
     },
   }

@@ -1,7 +1,7 @@
 <template>
   <v-container>
 
-    <v-form ref="form" lazy-validation>
+    <v-form ref="form" lazy-validation @submit.prevent="register">
       <v-text-field
         v-model="formData.user_name"
         :rules="[rules.required()]"
@@ -12,15 +12,15 @@
 
       <v-text-field
         v-model="formData.email"
+        :rules="[rules.email()]"
         prepend-icon="mdi-email"
         label="Email"
       >
-        <!-- :rules="[rules.email()]" -->
       </v-text-field>
 
       <v-text-field
         v-model="formData.password"
-        :rules="[rules.required(), rules.minLen(4)]"
+        :rules="[rules.required(), rules.minLen(3)]"
         :type="showPassword ? 'text' : 'password'"
         prepend-icon="mdi-key"
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
@@ -40,7 +40,7 @@
       >
       </v-text-field>
 
-      <v-btn color="success" @click="register">
+      <v-btn type="submit" color="success">
         ÜYE OL       
       </v-btn>
     </v-form>
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { rules } from '@/helpers/form.js'
+import { rules } from '@/helpers/validation-rules.js'
 
 export default {
   name: 'Register',

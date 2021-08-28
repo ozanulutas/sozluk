@@ -27,7 +27,11 @@ export default {
   mixins: [drawerMixin],
 
   data: () => ({
-    drawerItems: [{ title: "Profil", link: "/profile", icon: "mdi-account" }, { title: "Konu", link: "/topic", icon: "mdi-lead-pencil" }],
+    drawerItems: [
+      { title: "Profil", link: "/profile", icon: "mdi-account" }, 
+      { title: "Konu Aç", link: "/topic", icon: "mdi-lead-pencil" },
+      { title: "Posts", link: "/posts", icon: "mdi-lead-pencil" },
+    ],
     drawerTitle: 'Kullanıcı Adı',
   }),
 };

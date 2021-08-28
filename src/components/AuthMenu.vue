@@ -6,20 +6,12 @@
       </v-btn>
     </template>
     <v-list dense nav>
-      <v-list-item to="/login">
+      <v-list-item v-for="(item, index) in items" :key="index" :to="item.link">
         <v-list-item-icon>
-          <v-icon>mdi-login-variant</v-icon>
+          <v-icon>{{ item.icon }}</v-icon>
         </v-list-item-icon>
         <v-list-item-content>
-          <v-list-item-title>Giriş</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-      <v-list-item to="/register">
-        <v-list-item-icon>
-          <v-icon>mdi-account-plus</v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title>Üye Ol</v-list-item-title>
+          <v-list-item-title>{{ item.text }}</v-list-item-title>
         </v-list-item-content>
       </v-list-item>
     </v-list>
@@ -27,7 +19,21 @@
 </template>
 
 <script>
-export default {};
+export default {
+  name: 'AuthMenu',
+
+  computed: {
+    items() {
+      return this.$store.state.isLoggedIn ? [
+        { link: '/profile', text: 'Profil', icon: 'mdi-account' },
+        { link: '', text: 'Çıkış', icon: 'mdi-logout-variant' },
+      ] : [
+        { link: '/login', text: 'Giriş', icon: 'mdi-login-variant' },
+        { link: '/register', text: 'Üye Ol', icon: 'mdi-account-plus' },
+      ]
+    }
+  }
+};
 </script>
 
 <style>
