@@ -12,10 +12,10 @@
 
       <v-text-field
         v-model="formData.email"
-        :rules="[rules.email()]"
         prepend-icon="mdi-email"
         label="Email"
       >
+        <!-- :rules="[rules.email()]" -->
       </v-text-field>
 
       <v-text-field
@@ -29,7 +29,7 @@
       >
       </v-text-field>
 
-      <!-- <v-text-field
+      <v-text-field
         v-model="formData.password_confirmation"
         :rules="[rules.required(), rules.match(formData.password, 'Şifreler uyuşmuyor.')]"
         :type="showPasswordConfirmation ? 'text' : 'password'"
@@ -38,7 +38,7 @@
         label="Tekrar Şifre"
         @click:append="showPasswordConfirmation = !showPasswordConfirmation"
       >
-      </v-text-field> -->
+      </v-text-field>
 
       <v-btn color="success" @click="register">
         ÜYE OL       
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { rules, resetForm, resetValidation } from '@/helpers/form.js'
+import { rules } from '@/helpers/form.js'
 
 export default {
   name: 'Register',
@@ -68,10 +68,12 @@ export default {
     register() {
       if(this.$refs.form.validate()) {
         console.log("registered");
-        resetForm(this.$refs.form)
-        resetValidation(this.$refs.form)
+        this.$refs.form.reset()
+        this.$refs.form.resetValidation()
       }
     },
+
+
   }
 }
 </script>

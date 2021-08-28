@@ -3,8 +3,7 @@
     <AppBar @toggle-drawer="drawer = !drawer" :drawer="drawer" />
     <Drawer @update-drawer="updateDrawer" :drawer="drawer" :items="drawerItems" :title="drawerTitle" />
 
-
-    <h1>public layout</h1>
+    <h1>app layout</h1>
     <!-- <Nav /> -->
     <router-view></router-view>
   </v-main>
@@ -14,23 +13,22 @@
 import AppBar from '@/components/AppBar'
 import Drawer from '@/components/Drawer'
 import drawerMixin from '@/mixins/drawer.js'
-// import Nav from '@/components/Nav'
+// import Nav from "@/components/Nav";
 
 export default {
-  name: 'PublicLayout',
-  
+  name: "DashboardLayout",
+
   components: {
     AppBar,
     Drawer,
-    // Nav
+    // Nav,
   },
 
   mixins: [drawerMixin],
 
   data: () => ({
-    drawerItems: [{ title: "Konu 1", link: "/posts" }, { title: "Home", link: "/" }, { title: "Profil", link: "/profile" }],
-    drawerTitle: 'Kategori Başlığı',
+    drawerItems: [{ title: "Profil", link: "/profile", icon: "mdi-account" }, { title: "Konu", link: "/topic", icon: "mdi-lead-pencil" }],
+    drawerTitle: 'Kullanıcı Adı',
   }),
-
 };
 </script>

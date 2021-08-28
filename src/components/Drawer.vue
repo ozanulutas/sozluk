@@ -7,7 +7,7 @@
   >
     <v-list-item>
       <v-list-item-content>
-        <v-list-item-title class="text-h6"> Kategori Başlığı </v-list-item-title>
+        <v-list-item-title class="text-h6">{{ title }}</v-list-item-title>
       </v-list-item-content>
     </v-list-item>
 
@@ -18,6 +18,9 @@
         v-for="item in items" :key="item.title" 
         :to="item.link"
       >
+        <v-list-item-icon v-if="item.icon">
+          <v-icon>{{ item.icon }}</v-icon>
+        </v-list-item-icon>
         <v-list-item-content>
           <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
@@ -32,11 +35,13 @@ export default {
   name: "Drawer",
 
   props: {
-    drawer: Boolean
+    drawer: Boolean,
+    items: Array, 
+    title: String,
   },
 
   data: () => ({
-    items: [{ title: "Konu 1", link: "/posts" }, { title: "Konu 2", link: "s" }, { title: "Konu 3", link: "d" }],
+    // items: [{ title: "Konu 1", link: "/posts" }, { title: "Konu 2", link: "s" }, { title: "Konu 3", link: "d" }],
   }),
 
   computed: {

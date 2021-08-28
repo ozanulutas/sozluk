@@ -5,12 +5,6 @@ const rules = {
   match: (target, message) => val => val === target || (message ? message : `Bu alan ${target} ile uyuşmalıdır.`),
 }
 
-function resetForm(ref) {
-  ref.reset()
-}
 
-function resetValidation(ref) {
-  ref.resetValidation()
-}
 
-export { rules, resetForm, resetValidation }
+export { rules }

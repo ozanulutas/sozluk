@@ -1,4 +1,4 @@
-import AppLayout from '@/layouts/AppLayout.vue';
+import DashboardLayout from '@/layouts/DashboardLayout.vue';
 import PublicLayout from '@/layouts/PublicLayout.vue';
 
 export default [
@@ -29,13 +29,14 @@ export default [
     ]
   },
   {
-    component: AppLayout,
+    component: DashboardLayout,
     path: '',
     children: [
       {
-        path: '/about',
-        name: 'About',
-        component: () => import('@/views/About.vue')
+        meta: { middleware: 'auth' },
+        path: '/profile',
+        name: 'Profile',
+        component: () => import('@/views/Profile.vue'),
       },
     ]
   },

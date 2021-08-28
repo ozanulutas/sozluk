@@ -1,40 +1,30 @@
 <template>
   <v-app>
 
-    <AppBar @toggle-drawer="drawer = !drawer" :drawer="drawer" />
+    <!-- <AppBar @toggle-drawer="drawer = !drawer" :drawer="drawer" />
+    <Drawer @update-drawer="updateDrawer" :drawer="drawer" /> -->
 
-    <Drawer @update-drawer="updateDrawer" :drawer="drawer" />
-
-    <!-- <v-main> -->
-      <router-view></router-view>
-    <!-- </v-main> -->
+    <router-view></router-view>
     
   </v-app>
 </template>
 
 
 <script>
-import AppBar from '@/components/AppBar'
-import Drawer from '@/components/Drawer'
+// import AppBar from '@/components/AppBar'
+// import Drawer from '@/components/Drawer'
+// import drawerMixin from '@/mixins/drawer.js'
 
 export default {
   name: "App",
 
   components: {
-    AppBar,
-    Drawer,
+    // AppBar,
+    // Drawer,
   },
 
-  data: () => ({
-    drawer: null,
-  }),
+  // mixins: [drawerMixin],
 
-  methods: {
-    updateDrawer(drawer) {
-      this.drawer = drawer
-    },
-    
-  }
 };
 </script>
 
