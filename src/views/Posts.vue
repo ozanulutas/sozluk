@@ -7,12 +7,13 @@
         v-for="post in posts" :key="post.id"
         cols="12"
       >
-        <Post :post="post" />
+        <Post :post="post" :shrink="beforeExpandedId" @expand="updateExpanded" />
       </v-col>
     </v-row>
     
   </v-container>
 </template>
+
 
 <script>
 import Post from '@/components/Post'
@@ -24,6 +25,8 @@ export default {
   },
 
   data: () => ({
+    currentExpandedId: null,
+    beforeExpandedId: null,
     posts: [
       {
         id: 1,
@@ -51,6 +54,15 @@ export default {
       },
     ],
   }),
+
+  methods: {
+    updateExpanded(id) { // diğer açık olanın kapanması içün
+      if(this.currentExpandedId && this.currentExpandedId !== id) {
+        this.beforeExpandedId = this.currentExpandedId
+      }
+      this.currentExpandedId = id
+    }
+  }
 
 };
 </script>

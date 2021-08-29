@@ -5,4 +5,5 @@ const rules = {
   match: (target, message) => val => val === target || (message ? message : `Bu alan ${target} ile uyuşmalıdır.`),
 }
 
+
 export { rules }

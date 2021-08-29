@@ -30,13 +30,12 @@
       >
         <v-icon class="dislike-btn__icon">mdi-heart-broken</v-icon>
       </v-btn>
-
       <v-btn @click="toggleExpansion(post.id)" icon>
-        <v-icon :class="isExpanded ? 'rotate-180' : ''">mdi-chevron-down</v-icon>
+        <v-icon :class="post.id === expansionId ? 'rotate-180' : ''">mdi-chevron-down</v-icon>
       </v-btn>
     </v-card-actions>
     <v-expand-transition>
-      <div v-show="isExpanded">
+      <div v-show="expansionId === post.id">
         <v-divider></v-divider>
         <v-card-text>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis animi repudiandae, omnis est veritatis illo maiores ipsam voluptatum, aperiam nulla asperiores quam possimus vero rerum laborum, corrupti ipsa veniam optio.
@@ -52,11 +51,11 @@ export default {
   name: 'Post',
 
   props: {
-    post: Object,
-    shrink: Number,
+    post: Object
   },
 
   data: () => ({
+    expansionId: null,
     isExpanded: false,
 
     user: {
@@ -92,23 +91,22 @@ export default {
     },
   },
 
-  watch: {
-    shrink() {
-      if(this.post.id === this.shrink) {
-        this.isExpanded = false
-      }
-    }
-  },
-
   methods: {
     toggleExpansion(id) {
-      this.isExpanded = !this.isExpanded
-
-      if(this.isExpanded) {
-        this.$emit('expand', id)
+      if(this.isExpanded && this.expansionId === id) {
+        this.expansionId = null
+        this.isExpanded = false
+      } else {
+        this.expansionId = id
+        this.isExpanded = true
       }
     },
-
+    // isLiked(postId) {
+    //   return this.user.likes.some(like => like.post_id === postId)
+    // },
+    // isDisliked(postId) {
+    //   return this.user.dislikes.some(dislike => dislike.post_id === postId)
+    // },
     toggleLike(postId) {
       if(this.isLiked(postId)) {
         this.user.likes = this.user.likes.filter(like => like.post_id !== postId)
