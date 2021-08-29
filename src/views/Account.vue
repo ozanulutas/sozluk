@@ -44,14 +44,21 @@
         GÜNCELLE      
       </v-btn>
     </v-form>
+
+    <Snackbar :snackbar="snackbar"/>
+
   </v-container>
 </template>
 
 <script>
+import Snackbar from '@/components/Snackbar.vue'
 import { rules } from '@/helpers/validation-rules.js'
 
 export default {
-  name: 'Profile',
+  name: 'Account',
+  components: {
+    Snackbar
+  },
 
   data: () => ({
     rules,
@@ -63,13 +70,21 @@ export default {
     },
     showPassword: false,
     showPasswordConfirmation: false,
+    snackbar: {
+      show: false,
+      text: '',
+    },
   }),
   methods: {
     register() {
       if(this.$refs.form.validate()) {
-        console.log("registered");
-        this.$refs.form.reset()
+        console.log("updated");
         this.$refs.form.resetValidation()
+
+        this.snackbar = {
+          show: true,
+          text: 'Hesap bilgileriniz güncellendi.',
+        }
       }
     },
 

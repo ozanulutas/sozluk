@@ -29,9 +29,9 @@ export default [
     children: [
       {
         meta: { middleware: 'auth' },
-        path: '/profile',
-        name: 'Profile',
-        component: () => import('@/views/Profile.vue'),
+        path: '/account',
+        name: 'Account',
+        component: () => import('@/views/Account.vue'),
       },
       {
         meta: { middleware: 'auth' },

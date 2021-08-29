@@ -28,7 +28,7 @@ export default {
 
   data: () => ({
     drawerItems: [
-      { title: "Profil", link: "/profile", icon: "mdi-account" }, 
+      { title: "Profil", link: "/account", icon: "mdi-account" }, 
       { title: "Konu Aç", link: "/topic", icon: "mdi-lead-pencil" },
       { title: "Posts", link: "/posts", icon: "mdi-lead-pencil" },
     ],

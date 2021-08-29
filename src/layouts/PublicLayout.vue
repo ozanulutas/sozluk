@@ -28,7 +28,7 @@ export default {
   mixins: [drawerMixin],
 
   data: () => ({
-    drawerItems: [{ title: "Konu 1", link: "/posts" }, { title: "Topic", link: "/topic" }, { title: "Profil", link: "/profile" }],
+    drawerItems: [{ title: "Konu 1", link: "/posts" }, { title: "Topic", link: "/topic" }, { title: "Profil", link: "/account" }],
     drawerTitle: 'Kategori Başlığı',
   }),
 

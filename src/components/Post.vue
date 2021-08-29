@@ -14,19 +14,20 @@
       <v-btn icon>
         <v-icon>mdi-facebook</v-icon>
       </v-btn>
+      
       <v-btn 
         icon 
         class="like-btn" 
-        :class="isLiked(post.id) ? 'like-btn--active' : ''" 
-        @click="toggleLike(post.id)"
+        :class="likingStatus('like', post.id) ? 'like-btn--active' : ''" 
+        @click="toggleLiking('like', post.id)"
       >
         <v-icon class="like-btn__icon">mdi-heart</v-icon>
       </v-btn>
       <v-btn 
         icon 
         class="dislike-btn" 
-        :class="isDisliked(post.id) ? 'dislike-btn--active' : ''" 
-        @click="toggleDislike(post.id)"
+        :class="likingStatus('dislike', post.id) ? 'dislike-btn--active' : ''" 
+        @click="toggleLiking('dislike', post.id)"
       >
         <v-icon class="dislike-btn__icon">mdi-heart-broken</v-icon>
       </v-btn>
@@ -48,6 +49,7 @@
 
 
 <script>
+
 export default {
   name: 'Post',
 
@@ -83,15 +85,6 @@ export default {
     }
   }),
 
-  computed: {
-    isLiked() {
-      return postId => this.user.likes.some(like => like.post_id === postId)
-    },
-    isDisliked() {
-      return postId => this.user.dislikes.some(dislike => dislike.post_id === postId)
-    },
-  },
-
   watch: {
     shrink() {
       if(this.post.id === this.shrink) {
@@ -109,18 +102,23 @@ export default {
       }
     },
 
-    toggleLike(postId) {
-      if(this.isLiked(postId)) {
-        this.user.likes = this.user.likes.filter(like => like.post_id !== postId)
-      } else {
-        this.user.likes.push({ id: 3, post_id: postId })
-      }
+    likingStatus(status, postId) {
+      let key = status === 'like' ? 'likes' : 'dislikes'
+      return this.user[key].some(like => like.post_id === postId)
     },
-    toggleDislike(postId) {
-      if(this.isDisliked(postId)) {
-        this.user.dislikes = this.user.dislikes.filter(dislike => dislike.post_id !== postId)
+
+    toggleLiking(status, postId) {
+      if(!this.$store.state.isLoggedIn) {
+        this.$emit('unauthorized-action')
+        return
+      }
+
+      let key = status === 'like' ? 'likes' : 'dislikes'
+
+      if(this.likingStatus(status, postId)) {
+        this.user[key] = this.user[key].filter(like => like.post_id !== postId)
       } else {
-        this.user.dislikes.push({ id: 3, post_id: postId })
+        this.user[key].push({ id: 3, post_id: postId })
       }
     },
   }

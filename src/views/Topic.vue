@@ -32,7 +32,6 @@ import { rules } from '@/helpers/validation-rules.js'
 
 export default {
   name: 'Topic',
-
   components: {
     Snackbar,
   },

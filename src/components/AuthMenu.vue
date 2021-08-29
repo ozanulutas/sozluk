@@ -25,7 +25,7 @@ export default {
   computed: {
     items() {
       return this.$store.state.isLoggedIn ? [
-        { link: '/profile', text: 'Profil', icon: 'mdi-account' },
+        { link: '/account', text: 'Profil', icon: 'mdi-account' },
         { link: '', text: 'Çıkış', icon: 'mdi-logout-variant' },
       ] : [
         { link: '/login', text: 'Giriş', icon: 'mdi-login-variant' },

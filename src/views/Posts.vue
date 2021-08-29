@@ -7,9 +7,16 @@
         v-for="post in posts" :key="post.id"
         cols="12"
       >
-        <Post :post="post" :shrink="beforeExpandedId" @expand="updateExpanded" />
+        <Post 
+          :post="post" 
+          :shrink="beforeExpandedId" 
+          @expand="updateExpanded" 
+          @unauthorized-action="unauthorizedAction" 
+        />
       </v-col>
     </v-row>
+
+    <Snackbar :snackbar="snackbar"/>
     
   </v-container>
 </template>
@@ -17,11 +24,13 @@
 
 <script>
 import Post from '@/components/Post'
+import Snackbar from '@/components/Snackbar.vue'
 
 export default {
   name: "Posts",
   components: {
-    Post
+    Post,
+    Snackbar,
   },
 
   data: () => ({
@@ -53,6 +62,10 @@ export default {
         author: 'John Doe',
       },
     ],
+    snackbar: {
+      show: false,
+      text: '',
+    },
   }),
 
   methods: {
@@ -61,6 +74,17 @@ export default {
         this.beforeExpandedId = this.currentExpandedId
       }
       this.currentExpandedId = id
+    },
+    unauthorizedAction() {
+      this.snackbar = {
+        show: true,
+        text: 'Bu işlemi gerçekleştirmek için giriş yapmalısınız.',
+        second_btn: {
+          btn_text: 'GİRİŞ YAP',
+          btn_color: 'green',
+          event: () => this.$router.push('/login')
+        }
+      }
     }
   }
 

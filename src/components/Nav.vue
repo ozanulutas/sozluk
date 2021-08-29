@@ -2,7 +2,7 @@
   <nav>
     <ul>
       <li><router-link to="/topic">Topic</router-link></li>
-      <li><router-link to="/profile">profile</router-link></li>
+      <li><router-link to="/account">profile</router-link></li>
     </ul>
   </nav>
 </template>
