@@ -14,6 +14,7 @@
 
     <v-spacer></v-spacer>
 
+
     <!-- Search -->
     <v-responsive max-width="260" class="mr-2">
       <v-text-field
@@ -27,6 +28,7 @@
       ></v-text-field>
     </v-responsive>
     
+    <ToggleTheme />
 
     <!-- Auth -->
     <AuthMenu/>
@@ -37,12 +39,14 @@
 
 <script>
 import AuthMenu from '@/components/AuthMenu'
+import ToggleTheme from '@/components/ToggleTheme'
 
 export default {
   name: "AppBar",
 
   components: {
     AuthMenu,
+    ToggleTheme,
   },
 
   props: {
