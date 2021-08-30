@@ -7,9 +7,9 @@ export default [
     path: '',
     children: [
       {
-        path: '/posts',
-        name: 'Posts',
-        component: () => import('@/views/Posts.vue')
+        path: '/topic',
+        name: 'Topic',
+        component: () => import('@/views/Topic.vue')
       },
       {
         path: '/login',
@@ -35,9 +35,9 @@ export default [
       },
       {
         meta: { middleware: 'auth' },
-        path: '/topic',
-        name: 'Topic',
-        component: () => import('@/views/Topic.vue')
+        path: '/new-topic',
+        name: 'NewTopic',
+        component: () => import('@/views/NewTopic.vue')
       },
     ]
   },

@@ -4,6 +4,6 @@ export default function (next) {
   if (store.state.isLoggedIn) {
     next()
   } else {
-    next('/posts')
+    next('/topic')
   }
 }

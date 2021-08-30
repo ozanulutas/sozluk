@@ -41,7 +41,7 @@ export default {
   },
 
   data: () => ({
-    // items: [{ title: "Konu 1", link: "/posts" }, { title: "Konu 2", link: "s" }, { title: "Konu 3", link: "d" }],
+    // items: [{ title: "Konu 1", link: "/topic" }, { title: "Konu 2", link: "s" }, { title: "Konu 3", link: "d" }],
   }),
 
   computed: {

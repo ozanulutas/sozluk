@@ -24,7 +24,7 @@
         <v-icon class="like-btn__icon">mdi-heart</v-icon>
       </v-btn>
       <v-btn 
-        icon 
+        icon
         class="dislike-btn" 
         :class="likingStatus('dislike', post.id) ? 'dislike-btn--active' : ''" 
         @click="toggleLiking('dislike', post.id)"
@@ -35,6 +35,12 @@
       <v-btn @click="toggleExpansion(post.id)" icon>
         <v-icon :class="isExpanded ? 'rotate-180' : ''">mdi-chevron-down</v-icon>
       </v-btn>
+      <v-spacer></v-spacer>
+
+      <EntryMenu 
+        @edit="$emit('edit', post.id)"
+        @remove="$emit('remove', post.id)"
+      />
     </v-card-actions>
     <v-expand-transition>
       <div v-show="isExpanded">
@@ -49,9 +55,13 @@
 
 
 <script>
+import EntryMenu from '@/components/EntryMenu'
 
 export default {
-  name: 'Post',
+  name: 'Entry',
+  components: {
+    EntryMenu,
+  },
 
   props: {
     post: Object,
@@ -62,6 +72,7 @@ export default {
     isExpanded: false,
 
     user: {
+      id: 1,
       likes: [
         {
           id: 1,
